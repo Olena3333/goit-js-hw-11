@@ -26,17 +26,17 @@ async function onFormSubmit(e) {
   page = 1;
   refs.divEl.innerHTML = '';
   if (!e.target.elements.searchQuery.value.trim()) {
-    return Notiflix.Notify.failure('Please fill the form');
     refs.loadMoreBtn.classList.add('is-hidden');
+    return Notiflix.Notify.failure('Please fill the form');
   }
   seatchTerm = e.target.elements.searchQuery.value.trim();
   try {
     const data = await fetchImg(seatchTerm, page);
     if (data.hits.length === 0) {
+      refs.loadMoreBtn.classList.add('is-hidden');
       return Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
-      refs.loadMoreBtn.classList.add('is-hidden');
     }
     renderPage(data.hits);
     quantityPage = Math.ceil(data.totalHits / per_page);
