@@ -12,7 +12,7 @@ const refs = {
 };
 let page = 1;
 let seatchTerm = '';
-
+let quantityPage = 500;
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
